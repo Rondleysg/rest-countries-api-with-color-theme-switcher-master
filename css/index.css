@@ -11,9 +11,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-h1,h2,h3,h4,h5,h6,p {
     color: var(--very-dark-blue-light-mode);
     font-family: 'Nunito Sans', sans-serif;
 }
@@ -56,7 +53,7 @@ body {
 
 .main-content {
     display: block;
-    padding: 4rem 3rem;
+    padding: 4rem 3rem 3rem 4rem;
 }
 
 .element {
@@ -99,12 +96,38 @@ select option {
     padding: 0rem 2rem 1rem;
 }
 
-select option:hover {
-    background: var(--white);
+.countries-area {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-select option:target{
-    background: var(--white);
+.country-content {
+    background-color: var(--white);
+    width: 14em;
+    height: 270px;
+    border-radius: 5%;
+    padding-right: 2rem;
+    margin: 1.5rem;
+    background-color: var(--white);
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-position: initial;
+    background-size: 14em 9em;
+}
+
+.country-content h1 {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+}
+.country-content h3 {
+    font-size: 0.8rem;
 }
 
 @media only screen and (max-device-width: 375px) {
