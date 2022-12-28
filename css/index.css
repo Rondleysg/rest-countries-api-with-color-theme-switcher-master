@@ -1,0 +1,112 @@
+:root {
+    --dark-blue-dark-mode: hsl(209, 23%, 22%);
+    --very-dark-blue-dark-mode: hsl(207, 26%, 17%);
+    --very-dark-blue-light-mode: hsl(200, 15%, 8%);
+    --dark-gray-light-mode: hsl(0, 0%, 52%);
+    --very-light-gray-light-mode: hsl(0, 0%, 96%);
+    --white: hsl(0, 0%, 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    color: var(--very-dark-blue-light-mode);
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+body {
+    background-color: var(--very-light-gray-light-mode);
+}
+
+.header-content {
+    background-color: var(--white);
+    box-shadow: 1px 3px 0px 2px #f4f5f8;
+    display: flex;
+    padding: 1.3rem 3rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content h1 {
+    margin-left: 1rem;
+}
+
+.header-content div {
+    display: flex;
+    align-items: center;
+}
+
+.header-content div ion-icon {
+    padding-right: 0.5rem;
+}
+
+.main-content {
+    display: block;
+    padding: 4rem 3rem;
+}
+
+.element {
+    background-color: var(--white);
+}
+
+.filters-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    display: flex;
+    width: 25rem;
+    padding: 1.3rem;
+}
+
+.search .searchInput {
+    padding-left: 1.3em;
+    border: none;
+}
+
+.search .searchInput:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.selectFilter {
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.selectFilter:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+select option {
+    padding: 0rem 2rem 1rem;
+}
+
+select option:hover {
+    background: var(--white);
+}
+
+select option:target{
+    background: var(--white);
+}
+
+@media only screen and (max-device-width: 375px) {
+
+}
