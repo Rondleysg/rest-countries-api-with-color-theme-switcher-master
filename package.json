@@ -1,0 +1,28 @@
+{
+    "name": "rest-countries-api-with-color-theme-switcher-master",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "server": "lite-server --baseDir=app",
+        "start": "concurrently \"npm run watch\" \"npm run server\"",
+        "build": "tsc",
+        "watch": "tsc -w"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Rondleysg/rest-countries-api-with-color-theme-switcher-master.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Rondleysg/rest-countries-api-with-color-theme-switcher-master/issues"
+    },
+    "homepage": "https://github.com/Rondleysg/rest-countries-api-with-color-theme-switcher-master#readme",
+    "devDependencies": {
+        "concurrently": "^7.6.0",
+        "lite-server": "^2.6.1",
+        "typescript": "^4.9.4"
+    }
+}

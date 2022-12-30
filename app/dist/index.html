@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=1440px, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
     <title>REST Countries API with color theme switcher</title>
 </head>
@@ -21,10 +22,10 @@
     <div class="main-content">
         <div class="filters-content">
             <div>
-                <span class="search element">
+                <label for="searchh" class="search element">
                     <ion-icon name="search-outline"></ion-icon>
-                    <input class="searchInput" type="search" placeholder="Search for a country">
-                </span>
+                    <input id="searchh" class="searchInput" type="search" placeholder="Search for a country">
+                </label>
             </div>
             <div>
                 <select name="selectFilter element" class="selectFilter" aria-label="Filter">
@@ -45,7 +46,7 @@
 
 
 
-    <script src="./js/index.js"></script>
+    <script type="module" src="./js/index.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
