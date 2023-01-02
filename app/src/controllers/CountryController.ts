@@ -42,6 +42,7 @@ export class CountryController {
         divCountry.appendChild(countryCap);
 
         divCountry.style.backgroundImage = `url("${element.flags.png}")`;
+        divCountry.classList.add("element");
         countriesArea.appendChild(divCountry);
     }
 

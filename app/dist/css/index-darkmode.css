@@ -1,0 +1,33 @@
+:root {
+    --dark-blue-dark-mode: hsl(209, 23%, 22%);
+    --very-dark-blue-dark-mode: hsl(207, 26%, 17%);
+    --white: hsl(0, 0%, 100%);
+}
+
+body.dark-mode * {
+    color: var(--white);
+}
+
+body.dark-mode {
+    background-color: var(--very-dark-blue-dark-mode);
+}
+
+body.dark-mode .header-content, 
+body.dark-mode .element, 
+body.dark-mode .search .searchInput, 
+body.dark-mode .selectFilter {
+    background-color: var(--dark-blue-dark-mode);
+}
+
+body.dark-mode input::placeholder, 
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode a,
+body.dark-mode p,
+body.dark-mode b {
+    color: var(--white);
+}

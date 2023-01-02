@@ -1,6 +1,4 @@
 :root {
-    --dark-blue-dark-mode: hsl(209, 23%, 22%);
-    --very-dark-blue-dark-mode: hsl(207, 26%, 17%);
     --very-dark-blue-light-mode: hsl(200, 15%, 8%);
     --dark-gray-light-mode: hsl(0, 0%, 52%);
     --very-light-gray-light-mode: hsl(0, 0%, 96%);
@@ -23,13 +21,16 @@ h3 {
     font-weight: 600;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     background-color: var(--very-light-gray-light-mode);
 }
 
 .header-content {
     background-color: var(--white);
-    box-shadow: 1px 3px 0px 2px #f4f5f8;
     display: flex;
     padding: 1.3rem 3rem;
     align-items: center;
@@ -41,6 +42,11 @@ body {
 }
 
 .header-content div {
+    display: flex;
+    align-items: center;
+}
+
+.darkmode-btn {
     display: flex;
     align-items: center;
 }
@@ -67,6 +73,7 @@ body {
     display: flex;
     width: 25rem;
     padding: 1.3rem;
+    cursor: text;
 }
 
 .search .searchInput {
@@ -139,5 +146,34 @@ select option {
 }
 
 @media only screen and (max-device-width: 375px) {
+
+    .header-content {
+        padding: 2rem 1rem;
+    }
+
+    .header-content h1 {
+        margin-left: 0.5rem;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+
+    h3 {
+        font-size: 0.7rem;
+    }
+
+    .main-content {
+        padding: 2rem 1rem 2rem 1rem;
+    }
+
+    .filters-content {
+        display: block;
+    }
+
+    .search {
+        width: 100%;
+        margin-bottom: 3rem;
+    }
 
 }

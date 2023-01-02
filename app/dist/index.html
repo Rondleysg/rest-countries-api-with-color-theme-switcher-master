@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=1440px, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/index-darkmode.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
     <title>REST Countries API with color theme switcher</title>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>Where in the world?</h1>
+            <a href="./index.html"><h1>Where in the world?</h1></a>
             <div>
-                <ion-icon name="moon-outline"></ion-icon>
-                <h3>Dark Mode</h3>
+                <a id="darkmode-btn" class="darkmode-btn" href="#" onclick="toggleDarkMode()">
+                    <ion-icon name="moon-outline"></ion-icon>
+                    <h3>Dark Mode</h3>
+                </a>
             </div>
         </div>
     </header>
     <div class="main-content">
         <div class="filters-content">
             <div>
-                <label for="searchh" class="search element">
+                <label for="search" class="search element">
                     <ion-icon name="search-outline"></ion-icon>
-                    <input id="searchh" class="searchInput" type="search" placeholder="Search for a country">
+                    <input id="search" class="searchInput" type="search" placeholder="Search for a country">
                 </label>
             </div>
             <div>
