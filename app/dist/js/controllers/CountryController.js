@@ -41,20 +41,60 @@ export class CountryController {
         const capText = document.createTextNode(`Capital: `);
         boldCap.appendChild(capText);
         countryCap.appendChild(boldCap);
+        if (!element.capital) {
+            element.capital = [""];
+        }
         countryCap.appendChild(document.createTextNode(element.capital[0]));
         divCountry.appendChild(countryCap);
         divCountry.style.backgroundImage = `url("${element.flags.png}")`;
         divCountry.classList.add("element");
         countriesArea.appendChild(divCountry);
     }
-    static getCountriesSortedByPopulation() {
+    static getCountriesSortedByPopulation(countries) {
         return __awaiter(this, void 0, void 0, function* () {
-            const countries = yield CountryService.getCountries();
             const countriesSort = countries.sort(function (c1, c2) {
                 return c1.population > c2.population ? -1 : c1.population < c2.population ? 1 : 0;
             });
             const firstCountries = countriesSort.slice(0, 8);
             return firstCountries;
+        });
+    }
+    static getCountries() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const countries = yield CountryService.getCountries();
+            return countries;
+        });
+    }
+    static clearCountries() {
+        const countriesArea = document.getElementById("countries-area");
+        countriesArea.innerHTML = "";
+    }
+    static countriesByName(countries, countryName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            CountryController.clearCountries();
+            if (!countryName || countryName == "" || countryName == " ") {
+                return CountryController.getCountriesSortedByPopulation(countries);
+            }
+            const countriesFiltred = countries.filter((country) => {
+                if (country.name.common.includes(countryName)) {
+                    return country;
+                }
+            });
+            return countriesFiltred;
+        });
+    }
+    static countriesByRegion(countries, region) {
+        return __awaiter(this, void 0, void 0, function* () {
+            CountryController.clearCountries();
+            if (!region || region == "" || region == " ") {
+                return CountryController.getCountriesSortedByPopulation(countries);
+            }
+            const countriesFiltred = countries.filter((country) => {
+                if (country.region.includes(region)) {
+                    return country;
+                }
+            });
+            return countriesFiltred;
         });
     }
 }

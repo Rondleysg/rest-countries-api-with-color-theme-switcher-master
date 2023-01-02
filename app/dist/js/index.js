@@ -8,12 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { PageController } from "./controllers/PageController.js";
-import { CountryController } from "./controllers/CountryController.js";
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const pageController = new PageController();
-        const countries = yield CountryController.getCountriesSortedByPopulation();
-        CountryController.addCountries(countries);
+        pageController.init();
     });
 }
 main();

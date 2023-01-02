@@ -1,3 +1,4 @@
+import { PageController } from "./PageController.js";
 import { Country } from "../models/Country.js";
 import { CountryService } from "../service/CountryService.js";
 
@@ -7,7 +8,8 @@ export class CountryController {
             this.addCountry(element);
         });
     }
-    static addCountry(element: Country): void {
+
+    private static addCountry(element: Country): void {
         const countriesArea: HTMLElement = <HTMLElement>document.getElementById("countries-area");
         const divCountry: HTMLDivElement = document.createElement("div");
         divCountry.classList.add("country-content");
@@ -38,6 +40,9 @@ export class CountryController {
         const capText: Text = document.createTextNode(`Capital: `);
         boldCap.appendChild(capText);
         countryCap.appendChild(boldCap);
+        if (!element.capital) {
+            element.capital = [""];
+        }
         countryCap.appendChild(document.createTextNode(element.capital[0]));
         divCountry.appendChild(countryCap);
 
@@ -46,12 +51,50 @@ export class CountryController {
         countriesArea.appendChild(divCountry);
     }
 
-    static async getCountriesSortedByPopulation(): Promise<Country[]> {
-        const countries = await CountryService.getCountries();
+    static async getCountriesSortedByPopulation(countries: Country[]): Promise<Country[]> {
         const countriesSort: Country[] = countries.sort(function (c1: Country, c2: Country) {
             return c1.population > c2.population ? -1 : c1.population < c2.population ? 1 : 0;
         });
         const firstCountries: Country[] = countriesSort.slice(0, 8);
         return firstCountries;
+    }
+
+    static async getCountries(): Promise<Country[]> {
+        const countries = await CountryService.getCountries();
+        return countries;
+    }
+
+    private static clearCountries() {
+        const countriesArea: HTMLElement = <HTMLElement>document.getElementById("countries-area");
+        countriesArea.innerHTML = "";
+    }
+
+    static async countriesByName(countries: Country[], countryName: string): Promise<Country[]> {
+        CountryController.clearCountries();
+        if (!countryName || countryName == "" || countryName == " ") {
+            return CountryController.getCountriesSortedByPopulation(countries);
+        }
+
+        const countriesFiltred = countries.filter((country) => {
+            if (country.name.common.includes(countryName)) {
+                return country;
+            }
+        });
+        return countriesFiltred;
+    }
+
+    static async countriesByRegion(countries: Country[], region: string): Promise<Country[]> {
+        CountryController.clearCountries();
+        if (!region || region == "" || region == " ") {
+            return CountryController.getCountriesSortedByPopulation(countries);
+        }
+
+        const countriesFiltred = countries.filter((country) => {
+            if (country.region.includes(region)) {
+                return country;
+            }
+        });
+
+        return countriesFiltred;
     }
 }
