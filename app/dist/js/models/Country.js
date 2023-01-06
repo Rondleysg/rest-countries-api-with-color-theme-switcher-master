@@ -1,9 +1,11 @@
 export class Country {
-    constructor(population, region, capital, name, flags) {
+    constructor(population, region, capital, name, flag, likes, borders) {
         this.population = population;
         this.region = region;
         this.capital = capital;
         this.name = name;
-        this.flags = flags;
+        this.flag = flag;
+        this.likes = likes;
+        this.borders = borders;
     }
 }

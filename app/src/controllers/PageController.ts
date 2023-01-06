@@ -9,27 +9,30 @@ export class PageController {
 
     public async init() {
         this.countries = await CountryController.getCountries();
-        this.filterForSearch(this.countries);
-        this.setFirstCountries(this.countries);
-        this.filterByRegion(this.countries);
+        this.filterForSearch();
+        this.setFirstCountries();
+        this.filterByRegion();
     }
 
-    private async filterForSearch(countries: Country[]) {
+    private async filterForSearch() {
         const inputSearch = <HTMLInputElement>document.querySelector("#search");
         inputSearch.addEventListener("change", async () => {
             const countriesSearched = await CountryController.countriesByName(
-                countries,
+                this.countries,
                 inputSearch.value
             );
             CountryController.addCountries(countriesSearched);
         });
     }
 
-    private async filterByRegion(countries: Country[]) {
+    private async filterByRegion() {
         const select = <HTMLSelectElement>document.getElementById("filterRegion");
         select.addEventListener("change", async () => {
             const value = select.options[select.selectedIndex].value;
-            const countriesFiltred = await CountryController.countriesByRegion(countries, value);
+            const countriesFiltred = await CountryController.countriesByRegion(
+                this.countries,
+                value
+            );
             CountryController.addCountries(countriesFiltred);
         });
     }
@@ -47,7 +50,7 @@ export class PageController {
         }
     }
 
-    private async setFirstCountries(countries: Country[]) {
+    private async setFirstCountries() {
         const countriesSorted: Country[] = await CountryController.getCountriesSortedByPopulation(
             this.countries
         );

@@ -1,56 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/index-darkmode.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
-    <title>REST Countries API with color theme switcher</title>
-</head>
-<body>
-    <header>
-        <div class="header-content">
-            <a href="./index.html"><h1>Where in the world?</h1></a>
-            <div>
-                <a id="darkmode-btn" class="darkmode-btn" href="#" onclick="toggleDarkMode()">
-                    <ion-icon name="moon-outline"></ion-icon>
-                    <h3>Dark Mode</h3>
-                </a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/index.css" />
+        <link rel="stylesheet" href="./css/index-darkmode.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"
+            rel="stylesheet"
+        />
+        <title>REST Countries API with color theme switcher</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <a href="./index.html"><h1>Where in the world?</h1></a>
+                <div>
+                    <a id="darkmode-btn" class="darkmode-btn" href="#" onclick="toggleDarkMode()">
+                        <ion-icon name="moon-outline"></ion-icon>
+                        <h3>Dark Mode</h3>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="filters-content">
+                <div>
+                    <label for="search" class="search element">
+                        <ion-icon name="search-outline"></ion-icon>
+                        <input
+                            id="search"
+                            class="searchInput"
+                            type="search"
+                            placeholder="Search for a country"
+                        />
+                    </label>
+                </div>
+                <div>
+                    <select
+                        id="filterRegion"
+                        name="selectFilter element"
+                        class="selectFilter"
+                        aria-label="Filter"
+                    >
+                        <option value="" selected>Filter by Region</option>
+                        <option value="Africa">África</option>
+                        <option value="Americas">Americas</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </header>
-    <div class="main-content">
-        <div class="filters-content">
-            <div>
-                <label for="search" class="search element">
-                    <ion-icon name="search-outline"></ion-icon>
-                    <input id="search" class="searchInput" type="search" placeholder="Search for a country">
-                </label>
-            </div>
-            <div>
-                <select id="filterRegion" name="selectFilter element" class="selectFilter" aria-label="Filter">
-                    <option value="" selected>Filter by Region</option>
-                    <option value="Africa">África</option>
-                    <option value="Americas">Americas</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                </select>
-            </div>
-        </div>
-    </div>
-        <div class="countries-area" id="countries-area">
-            
-        </div>
+        <div class="countries-area" id="countries-area"></div>
 
-
-
-
-    <script type="module" src="./js/index.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+        <script type="module" src="./js/index.js"></script>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
 </html>

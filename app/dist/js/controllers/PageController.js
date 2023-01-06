@@ -15,26 +15,26 @@ export class PageController {
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             this.countries = yield CountryController.getCountries();
-            this.filterForSearch(this.countries);
-            this.setFirstCountries(this.countries);
-            this.filterByRegion(this.countries);
+            this.filterForSearch();
+            this.setFirstCountries();
+            this.filterByRegion();
         });
     }
-    filterForSearch(countries) {
+    filterForSearch() {
         return __awaiter(this, void 0, void 0, function* () {
             const inputSearch = document.querySelector("#search");
             inputSearch.addEventListener("change", () => __awaiter(this, void 0, void 0, function* () {
-                const countriesSearched = yield CountryController.countriesByName(countries, inputSearch.value);
+                const countriesSearched = yield CountryController.countriesByName(this.countries, inputSearch.value);
                 CountryController.addCountries(countriesSearched);
             }));
         });
     }
-    filterByRegion(countries) {
+    filterByRegion() {
         return __awaiter(this, void 0, void 0, function* () {
             const select = document.getElementById("filterRegion");
             select.addEventListener("change", () => __awaiter(this, void 0, void 0, function* () {
                 const value = select.options[select.selectedIndex].value;
-                const countriesFiltred = yield CountryController.countriesByRegion(countries, value);
+                const countriesFiltred = yield CountryController.countriesByRegion(this.countries, value);
                 CountryController.addCountries(countriesFiltred);
             }));
         });
@@ -51,7 +51,7 @@ export class PageController {
             document.body.classList.add("dark-mode");
         }
     }
-    setFirstCountries(countries) {
+    setFirstCountries() {
         return __awaiter(this, void 0, void 0, function* () {
             const countriesSorted = yield CountryController.getCountriesSortedByPopulation(this.countries);
             CountryController.addCountries(countriesSorted);

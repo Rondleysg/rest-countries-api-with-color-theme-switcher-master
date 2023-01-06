@@ -1,4 +1,3 @@
-import { PageController } from "./PageController.js";
 import { Country } from "../models/Country.js";
 import { CountryService } from "../service/CountryService.js";
 
@@ -7,17 +6,21 @@ export class CountryController {
         countries.forEach((element: Country) => {
             this.addCountry(element);
         });
+        this.likeCountry();
     }
 
     private static addCountry(element: Country): void {
         const countriesArea: HTMLElement = <HTMLElement>document.getElementById("countries-area");
         const divCountry: HTMLDivElement = document.createElement("div");
+        const divInfoCountry: HTMLDivElement = document.createElement("div");
+        const divLikesCountry: HTMLDivElement = document.createElement("div");
+        const divContentCountry: HTMLDivElement = document.createElement("div");
         divCountry.classList.add("country-content");
 
         const countryName: HTMLHeadingElement = document.createElement("h1");
-        const nameText: Text = document.createTextNode(element.name.common);
+        const nameText: Text = document.createTextNode(element.name);
         countryName.appendChild(nameText);
-        divCountry.appendChild(countryName);
+        divInfoCountry.appendChild(countryName);
 
         const countryPop: HTMLHeadingElement = document.createElement("h3");
         const boldPop: HTMLElement = document.createElement("b");
@@ -25,7 +28,7 @@ export class CountryController {
         boldPop.appendChild(popText);
         countryPop.appendChild(boldPop);
         countryPop.appendChild(document.createTextNode(element.population.toLocaleString("pt-BR")));
-        divCountry.appendChild(countryPop);
+        divInfoCountry.appendChild(countryPop);
 
         const countryReg: HTMLHeadingElement = document.createElement("h3");
         const boldReg: HTMLElement = document.createElement("b");
@@ -33,7 +36,7 @@ export class CountryController {
         boldReg.appendChild(regText);
         countryReg.appendChild(boldReg);
         countryReg.appendChild(document.createTextNode(element.region));
-        divCountry.appendChild(countryReg);
+        divInfoCountry.appendChild(countryReg);
 
         const countryCap: HTMLHeadingElement = document.createElement("h3");
         const boldCap: HTMLElement = document.createElement("b");
@@ -44,10 +47,41 @@ export class CountryController {
             element.capital = [""];
         }
         countryCap.appendChild(document.createTextNode(element.capital[0]));
-        divCountry.appendChild(countryCap);
+        divInfoCountry.appendChild(countryCap);
 
-        divCountry.style.backgroundImage = `url("${element.flags.png}")`;
+        const likes: any[] = JSON.parse(<string>localStorage.getItem("likes")) || [];
+        const countryLiked = JSON.stringify({
+            country: element.name,
+        });
+        const exists = likes.includes(countryLiked);
+
+        if (exists) {
+            divLikesCountry.innerHTML = `
+            <button id=${element.name} like-button liked="true">
+                <span class="material-icons material-icons-outlined liked">
+                    favorite
+                </span>
+                <span>${element.likes}</span>
+            </button>
+        `;
+        } else {
+            divLikesCountry.innerHTML = `
+            <button id=${element.name} like-button>
+                <span class="material-icons material-icons-outlined">
+                    favorite_border
+                </span>
+                <span>${element.likes}</span>
+            </button>
+        `;
+        }
+
+        divLikesCountry.classList.add("likes-country");
+
+        divCountry.style.backgroundImage = `url("${element.flag}")`;
         divCountry.classList.add("element");
+        divContentCountry.appendChild(divInfoCountry);
+        divContentCountry.appendChild(divLikesCountry);
+        divCountry.appendChild(divContentCountry);
         countriesArea.appendChild(divCountry);
     }
 
@@ -57,6 +91,33 @@ export class CountryController {
         });
         const firstCountries: Country[] = countriesSort.slice(0, 8);
         return firstCountries;
+    }
+
+    static async likeCountry(): Promise<void> {
+        const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll("[like-button]");
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", (event) => {
+                const liked = btn.getAttribute("liked");
+                const likes = JSON.parse(<string>localStorage.getItem("likes")) || [];
+                const countryLiked = JSON.stringify({
+                    country: btn.id,
+                });
+
+                if (liked !== null) {
+                    CountryService.likeCountry(btn.id, -1).then(async () => {
+                        likes.splice(likes.indexOf(countryLiked), 1);
+                        localStorage.setItem("likes", JSON.stringify(likes));
+                        window.location.href = "/";
+                    });
+                } else {
+                    CountryService.likeCountry(btn.id, 1).then(async () => {
+                        likes.push(countryLiked);
+                        localStorage.setItem("likes", JSON.stringify(likes));
+                        window.location.href = "/";
+                    });
+                }
+            });
+        });
     }
 
     static async getCountries(): Promise<Country[]> {
@@ -76,7 +137,7 @@ export class CountryController {
         }
 
         const countriesFiltred = countries.filter((country) => {
-            if (country.name.common.includes(countryName)) {
+            if (country.name.includes(countryName)) {
                 return country;
             }
         });
